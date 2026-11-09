@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spelling Bee Championship 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:wght@400;500;600;700;800&family=Cairo:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Live Background Video for Dashboard -->
+  <div class="dashboard-video-bg-container">
+    <video id="dashboardBgVideo" src="background.mp4" autoplay loop muted playsinline></video>
+    <div class="dashboard-video-overlay"></div>
+  </div>
+
+  <!-- Ambient Background Glow & Honeycomb Pattern -->
+  <div class="bg-stars"></div>
+  <div class="bg-honeycomb"></div>
+
+  <!-- MAIN APP CONTAINER -->
+  <div id="appContainer" class="app-container">
+
+    <!-- ============================================================== -->
+    <!-- DASHBOARD VIEW                                                 -->
+    <!-- ============================================================== -->
+    <main id="dashboardView" class="dashboard-view">
+      
+      <!-- HEADER -->
+      <header class="championship-header">
+        <div class="header-inner">
+          <div class="trophy-brand">
+            <div class="trophy-emblem">
+              <span class="bee-icon">🐝</span>
+              <div class="gold-halo"></div>
+            </div>
+            <div class="brand-text">
+              <div class="brand-eyebrow">ANNUAL ACADEMIC COMPETITION</div>
+              <h1 class="brand-title">SPELLING BEE <span class="gold-gradient">CHAMPIONSHIP</span></h1>
+              <p class="brand-subtitle">Official Speller Showcase • Contestant Stage System</p>
+            </div>
+          </div>
+
+          <div class="header-actions">
+            <div class="stats-pill">
+              <span class="stats-num">68</span>
+              <span class="stats-label">Contestants</span>
+            </div>
+            <div class="stats-pill">
+              <span class="stats-num">6</span>
+              <span class="stats-label">Grades</span>
+            </div>
+            <button id="btnHeaderFullscreen" class="btn-action-icon" title="Toggle Fullscreen">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- SEARCH & GRADE NAVIGATION TABS -->
+        <div class="nav-control-bar">
+          <div class="search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+            <input type="text" id="spellerSearchInput" placeholder="Search speller name or class..." autocomplete="off">
+            <button id="btnClearSearch" class="btn-clear-search" style="display:none;">&times;</button>
+          </div>
+
+          <nav class="grade-tabs" id="gradeTabs">
+            <button class="grade-tab active" data-grade="all">
+              <span class="tab-label">All Spellers</span>
+              <span class="tab-count">68</span>
+            </button>
+            <button class="grade-tab" data-grade="1">
+              <span class="tab-label">Grade 1</span>
+              <span class="tab-count">6</span>
+            </button>
+            <button class="grade-tab" data-grade="2">
+              <span class="tab-label">Grade 2</span>
+              <span class="tab-count">8</span>
+            </button>
+            <button class="grade-tab" data-grade="3">
+              <span class="tab-label">Grade 3</span>
+              <span class="tab-count">7</span>
+            </button>
+            <button class="grade-tab" data-grade="4">
+              <span class="tab-label">Grade 4</span>
+              <span class="tab-count">12</span>
+            </button>
+            <button class="grade-tab" data-grade="5">
+              <span class="tab-label">Grade 5</span>
+              <span class="tab-count">21</span>
+            </button>
+            <button class="grade-tab" data-grade="6">
+              <span class="tab-label">Grade 6</span>
+              <span class="tab-count">14</span>
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      <!-- SPELLERS CONTAINER (Grouped by Grade, Sorted A-Z) -->
+      <section class="spellers-section" id="spellersContainer">
+        <!-- Rendered dynamically by JavaScript -->
+      </section>
+
+      <!-- EMPTY SEARCH STATE -->
+      <div id="noResultsState" class="no-results" style="display:none;">
+        <div class="no-results-icon">🔍</div>
+        <h3>No Spellers Found</h3>
+        <p>Try searching for a different name or grade.</p>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="championship-footer">
+        <p>Spelling Bee Championship 2026 • Professional Stage Display System</p>
+      </footer>
+    </main>
+
+
+    <!-- ============================================================== -->
+    <!-- STAGE VIEW (Contestant Frame & Winner Presentation)             -->
+    <!-- ============================================================== -->
+    <div id="stageView" class="stage-view" style="display:none;">
+      
+      <div class="stage-layout">
+        
+        <!-- LEFT: THE VIDEO STAGE DISPLAY -->
+        <div class="stage-screen-col">
+          <div class="stage-screen-frame" id="stageScreenFrame">
+            
+            <!-- STAGE VIEWPORT (16:9 ratio, 1280x720 canvas) -->
+            <div class="stage-viewport" id="stageViewport">
+              
+              <!-- WebGL Canvas for 60FPS Hardware Accelerated Chroma-Key -->
+              <canvas id="stageCanvas" width="1280" height="720"></canvas>
+
+              <!-- CSS Fallback Container (active in file:// or fallback mode) -->
+              <div id="cssFallbackContainer" class="css-fallback-container">
+                <video id="cssFrameVideo" src="frame video.mp4" loop playsinline muted></video>
+                <div class="css-photo-slot" id="cssPhotoSlot">
+                  <img id="cssContestantPhoto" alt="Contestant Photo">
+                  <div class="css-photo-bevel"></div>
+                </div>
+              </div>
+
+              <!-- Overlaid Winner Effect Video -->
+              <video id="winnerVideo" src="winner effect.mp4" playsinline preload="auto"></video>
+
+              <!-- Stage Confetti FX Canvas for extra celebration -->
+              <canvas id="confettiCanvas" width="1280" height="720"></canvas>
+
+              <!-- Overlaid Champion Celebration Banner -->
+              <div id="winnerBanner" class="stage-winner-banner">
+                <div class="banner-crown">👑</div>
+                <div class="banner-title">WINNER!</div>
+                <div class="banner-sub" id="winnerBannerName">SPELLING BEE CHAMPION</div>
+              </div>
+
+              <!-- Status Badge (Top-Left of Screen) -->
+              <div class="stage-live-badge">
+                <span class="live-pulse"></span>
+                <span>LIVE STAGE</span>
+              </div>
+
+              <!-- Video Source Element for WebGL rendering -->
+              <video id="webglFrameVideo" src="frame video.mp4" loop playsinline muted style="display:none;"></video>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT: STAGE CONTROL PANEL (Beside the video) -->
+        <aside class="stage-sidebar-col">
+          <div class="control-panel-card">
+            
+            <div class="panel-header">
+              <div class="panel-tag">CONTESTANT ON STAGE</div>
+              <h2 class="panel-title">Stage Control</h2>
+            </div>
+
+            <!-- ACTIVE CONTESTANT INFO CARD -->
+            <div class="contestant-stage-card">
+              <div class="contestant-stage-avatar">
+                <img id="stageContestantThumb" src="" alt="Contestant Thumbnail">
+                <div class="avatar-ring"></div>
+              </div>
+              <div class="contestant-stage-meta">
+                <div class="stage-grade-badge" id="stageGradeBadge">Grade 1</div>
+                <h3 class="stage-contestant-name" id="stageContestantName">Student Name</h3>
+                <div class="stage-contestant-ar" id="stageContestantAr"></div>
+                <div class="stage-section-tag" id="stageSectionTag">Section 1A</div>
+              </div>
+            </div>
+
+            <!-- MAIN ACTION BUTTONS: WINNER & END -->
+            <div class="stage-primary-actions">
+              
+              <!-- WINNER BUTTON (Beside the video) -->
+              <button id="btnWinner" class="btn-stage-winner" title="Click to trigger Winner Effect (Key: W)">
+                <div class="winner-glow"></div>
+                <div class="winner-btn-content">
+                  <span class="btn-trophy">🏆</span>
+                  <div class="btn-text-group">
+                    <span class="btn-main-text">WINNER</span>
+                    <span class="btn-sub-text">Celebrate Champion</span>
+                  </div>
+                </div>
+              </button>
+
+              <!-- END BUTTON (Beside the video) -->
+              <button id="btnEnd" class="btn-stage-end" title="Click to End and Return to Dashboard (Key: Esc or E)">
+                <div class="btn-end-content">
+                  <span class="btn-end-icon">⏹</span>
+                  <div class="btn-text-group">
+                    <span class="btn-main-text">END</span>
+                    <span class="btn-sub-text">Return to Dashboard</span>
+                  </div>
+                </div>
+              </button>
+
+            </div>
+
+            <!-- SECONDARY STAGE CONTROLS -->
+            <div class="stage-secondary-controls">
+              
+              <div class="nav-spellers-row">
+                <button id="btnPrevSpeller" class="btn-speller-nav" title="Previous Speller (Key: Left Arrow)">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                  </svg>
+                  <span>Prev</span>
+                </button>
+                <div class="speller-counter" id="spellerCounter">1 of 68</div>
+                <button id="btnNextSpeller" class="btn-speller-nav" title="Next Speller (Key: Right Arrow)">
+                  <span>Next</span>
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="control-toggle-row">
+                <!-- Sound Toggle -->
+                <button id="btnToggleAudio" class="btn-tool-toggle" title="Toggle Sound (Key: M)">
+                  <span id="audioIcon">🔊</span>
+                  <span id="audioLabel">Sound ON</span>
+                </button>
+
+                <!-- Fullscreen Toggle -->
+                <button id="btnStageFullscreen" class="btn-tool-toggle" title="Toggle Fullscreen (Key: F)">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                  </svg>
+                  <span>Fullscreen</span>
+                </button>
+              </div>
+
+            </div>
+
+            <!-- KEYBOARD SHORTCUTS HINT -->
+            <div class="shortcuts-hint">
+              <span class="shortcut-pill"><kbd>W</kbd> Winner</span>
+              <span class="shortcut-pill"><kbd>Esc</kbd> End</span>
+              <span class="shortcut-pill"><kbd>◄</kbd> <kbd>►</kbd> Spellers</span>
+              <span class="shortcut-pill"><kbd>F</kbd> Fullscreen</span>
+            </div>
+
+          </div>
+        </aside>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- LOAD STUDENT DATA -->
+  <script src="students_data.js"></script>
+  <!-- APP SCRIPT -->
+  <script src="app.js"></script>
+</body>
+</html>
