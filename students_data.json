@@ -195,9 +195,9 @@
     "id": 27
   },
   {
-    "file": "Round 3 - Grade 4 - 1448/Hamza Tala 4A.jpg",
+    "file": "Round 3 - Grade 4 - 1448/Hamza Talal 4A.jpg",
     "grade": 4,
-    "name": "Hamza Tala",
+    "name": "Hamza Talal",
     "name_ar": "",
     "section": "4A",
     "id": 28
@@ -432,58 +432,58 @@
     "id": 60
   },
   {
-    "file": "Spellers 2026 -Grade 6/6B/Yazan Nizar Adnan.png",
-    "grade": 6,
-    "name": "Yazan Nizar Adnan",
-    "section": "6B",
-    "id": 61
-  },
-  {
     "file": "Spellers 2026 -Grade 6/6A/Mahmoud Bayan Abaza.png",
     "grade": 6,
     "name": "Mahmoud Bayan Abaza",
     "section": "6A",
-    "id": 62
+    "id": 61
   },
   {
     "file": "Spellers 2026 -Grade 6/Salman Al-mesabah 6F.jpg",
     "grade": 6,
-    "name": "Salman Al-Mesabah",
+    "name": "Salman Al-mesabah",
     "section": "6F",
-    "id": 63
+    "id": 62
   },
   {
     "file": "Spellers 2026 -Grade 6/Saud Waleed 6c.jpg",
     "grade": 6,
     "name": "Saud Waleed",
     "section": "6C",
-    "id": 64
+    "id": 63
   },
   {
     "file": "Spellers 2026 -Grade 6/Soliman  Osama 6C.jpg",
     "grade": 6,
     "name": "Soliman Osama",
     "section": "6C",
-    "id": 65
+    "id": 64
   },
   {
-    "file": "Spellers 2026 -Grade 6/6A/Sultan Faisal Abdul-Hamid Al-Dubaikel.png",
+    "file": "Spellers 2026 -Grade 6/6A/Sultan Faisal Abdulhamid Al-Dubaikel.png",
     "grade": 6,
-    "name": "Sultan Faisal Abdul-Hamid Al-Dubaikel",
+    "name": "Sultan Faisal Abdulhamid Al-Dubaikel",
     "section": "6A",
-    "id": 66
+    "id": 65
   },
   {
     "file": "Spellers 2026 -Grade 6/Talal Omar 6C.jpg",
     "grade": 6,
     "name": "Talal Omar",
     "section": "6C",
+    "id": 66
+  },
+  {
+    "file": "Spellers 2026 -Grade 6/6B/Yazan Nezar Adnan.png",
+    "grade": 6,
+    "name": "Yazan Nezar Adnan",
+    "section": "6B",
     "id": 67
   },
   {
     "file": "Spellers 2026 -Grade 6/Zaid Al-Zabt 6F.jpg",
     "grade": 6,
-    "name": "Zaid Al-Zabat",
+    "name": "Zaid Al-Zabt",
     "section": "6F",
     "id": 68
   }
