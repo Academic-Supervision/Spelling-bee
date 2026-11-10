@@ -2203,3 +2203,124 @@ body {
     color: #333333 !important;
   }
 }
+
+
+/* ==============================================================
+   AJYAL AL-MAWAHIB INSTITUTIONAL BRANDING & LOGO STYLES
+   ============================================================== */
+
+/* Header Brand Box */
+.school-brand-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.school-header-logo {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 14px rgba(212, 175, 55, 0.3));
+  transition: transform 0.3s ease, filter 0.3s ease;
+  z-index: 2;
+}
+
+.school-brand-box:hover .school-header-logo {
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
+}
+
+.school-logo-glow {
+  position: absolute;
+  inset: -8px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.brand-divider-v {
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.45) 50%, transparent 100%);
+  margin: 0 4px;
+}
+
+/* Stage View Institutional Badge */
+.stage-school-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+}
+
+.stage-school-mini-logo {
+  height: 18px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.5));
+}
+
+/* Ceremony View Crest */
+.ceremony-school-crest {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.ceremony-school-logo {
+  height: 84px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.5)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+  animation: crestFloat 4s ease-in-out infinite alternate;
+  z-index: 2;
+}
+
+@keyframes crestFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-5px); }
+}
+
+.crest-halo {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Footer School Brand */
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.footer-school-logo {
+  height: 26px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.85;
+  filter: grayscale(20%) brightness(1.1);
+  transition: opacity 0.2s, filter 0.2s;
+}
+
+.footer-inner:hover .footer-school-logo {
+  opacity: 1;
+  filter: grayscale(0%) drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+}
