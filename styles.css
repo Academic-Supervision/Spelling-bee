@@ -1225,3 +1225,981 @@ body {
     font-size: 22px;
   }
 }
+
+
+/* ==============================================================
+   COMPETITION MANAGEMENT SYSTEM STYLES
+   ============================================================== */
+
+/* Competition Management Bar */
+.competition-bar-section {
+  max-width: 1600px;
+  margin: 16px auto 0;
+  padding: 0 40px;
+  width: 100%;
+}
+
+.competition-bar {
+  border-radius: var(--radius-md);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  position: relative;
+  backdrop-filter: blur(16px);
+}
+
+/* Inactive State */
+.competition-bar.inactive {
+  background: linear-gradient(135deg, rgba(14, 25, 53, 0.85) 0%, rgba(8, 15, 34, 0.9) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.comp-bar-inactive-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.comp-inactive-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.comp-mode-icon {
+  font-size: 28px;
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
+}
+
+.comp-mode-title {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 0.5px;
+}
+
+.comp-mode-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.btn-comp-start {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  background: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
+  color: #060b19;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-comp-start:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #fae078 0%, #d4af37 100%);
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.55);
+}
+
+/* Active State */
+.competition-bar.active {
+  background: linear-gradient(135deg, rgba(8, 20, 48, 0.95) 0%, rgba(5, 12, 28, 0.95) 100%);
+  border: 1.5px solid rgba(16, 185, 129, 0.6);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 30px rgba(16, 185, 129, 0.2);
+}
+
+.comp-bar-active-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.comp-active-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.comp-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(239, 68, 68, 0.18);
+  border: 1px solid rgba(239, 68, 68, 0.6);
+  color: #ff6b6b;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 999px;
+  letter-spacing: 1px;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ef4444;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ef4444;
+  animation: livePulseDot 1.5s infinite;
+}
+
+@keyframes livePulseDot {
+  0% { transform: scale(0.9); opacity: 1; box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { transform: scale(1.3); opacity: 0.8; box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+  100% { transform: scale(0.9); opacity: 1; box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.comp-round-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.08) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  padding: 5px 14px;
+  border-radius: var(--radius-sm);
+}
+
+.comp-round-pill .round-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.comp-round-pill .round-val {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.comp-counter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+}
+
+.comp-counter-pill .counter-label {
+  color: var(--text-muted);
+}
+
+.comp-counter-pill .counter-num {
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.comp-counter-pill.qualified-pill {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+.comp-counter-pill.qualified-pill .counter-label {
+  color: #6ee7b7;
+  font-weight: 600;
+}
+
+.comp-counter-pill.qualified-pill .counter-num {
+  color: #a7f3d0;
+  font-size: 14px;
+  font-weight: 900;
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+}
+
+.comp-active-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-comp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid transparent;
+}
+
+/* Add Round Button */
+.btn-comp-btn.btn-add-round {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: #ffffff;
+  border-color: rgba(52, 211, 153, 0.4);
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3);
+}
+
+.btn-comp-btn.btn-add-round:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.5);
+}
+
+/* Rounds Complete Button */
+.btn-comp-btn.btn-complete-rounds {
+  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  color: #060b19;
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+  font-weight: 800;
+}
+
+.btn-comp-btn.btn-complete-rounds:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #fbeea8 0%, #d4af37 100%);
+  box-shadow: 0 6px 22px rgba(212, 175, 55, 0.55);
+}
+
+/* Reset Button */
+.btn-comp-btn.btn-reset {
+  background: rgba(239, 68, 68, 0.12);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.35);
+}
+
+.btn-comp-btn.btn-reset:hover {
+  background: rgba(239, 68, 68, 0.25);
+  color: #ffffff;
+  border-color: #ef4444;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.3);
+}
+
+/* ==============================================================
+   SPELLER CARD WINNER / QUALIFIED STYLES
+   ============================================================== */
+.speller-card.is-winner {
+  border: 2px solid #10b981 !important;
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.4), 0 10px 25px rgba(0, 0, 0, 0.6) !important;
+  background: linear-gradient(180deg, rgba(16, 185, 129, 0.1) 0%, rgba(14, 25, 53, 0.85) 100%);
+}
+
+.speller-winner-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 9px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  z-index: 5;
+  animation: winnerBadgeShimmer 3s infinite;
+}
+
+@keyframes winnerBadgeShimmer {
+  0% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.04); filter: brightness(1.2); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+.speller-winner-badge .winner-star {
+  font-size: 12px;
+  color: #ffd700;
+  filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.8));
+}
+
+/* Quick Card Winner Toggle Button */
+.card-winner-toggle {
+  position: absolute;
+  top: 10px;
+  left: 45px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(5, 9, 20, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 6;
+  backdrop-filter: blur(4px);
+}
+
+.card-winner-toggle:hover {
+  background: rgba(16, 185, 129, 0.3);
+  border-color: #10b981;
+  color: #ffd700;
+  transform: scale(1.15);
+}
+
+.card-winner-toggle.active {
+  background: #10b981;
+  border-color: #ffffff;
+  color: #ffd700;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+}
+
+/* Stage Winner Status Tag */
+.stage-winner-status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(4, 120, 87, 0.3) 100%);
+  border: 1px solid #10b981;
+  color: #a7f3d0;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 6px;
+  margin-top: 8px;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+}
+
+.btn-stage-undo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 8px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 6px;
+}
+
+.btn-stage-undo:hover {
+  background: rgba(239, 68, 68, 0.3);
+  color: #ffffff;
+  border-color: #ef4444;
+}
+
+/* ==============================================================
+   GRAND AWARDS CEREMONY VIEW
+   ============================================================== */
+.ceremony-view {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background: radial-gradient(circle at 50% 20%, #0d1b3e 0%, #050a1a 70%, #02040a 100%);
+  padding: 40px 24px 80px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 50;
+}
+
+/* Theatrical Curtains & Spotlights */
+.ceremony-curtain-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: radial-gradient(ellipse at 50% -20%, #b91c1c 0%, #7f1d1d 60%, transparent 100%);
+  border-bottom: 3px solid #d4af37;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.4);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ceremony-spotlight {
+  position: absolute;
+  top: -100px;
+  width: 350px;
+  height: 1200px;
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.05) 50%, transparent 100%);
+  transform-origin: top center;
+  pointer-events: none;
+  filter: blur(25px);
+  z-index: 1;
+}
+
+.spotlight-left {
+  left: 10%;
+  transform: rotate(-18deg);
+  animation: swingSpotLeft 8s ease-in-out infinite alternate;
+}
+
+.spotlight-center {
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.6;
+}
+
+.spotlight-right {
+  right: 10%;
+  transform: rotate(18deg);
+  animation: swingSpotRight 8s ease-in-out infinite alternate;
+}
+
+@keyframes swingSpotLeft {
+  0% { transform: rotate(-25deg); }
+  100% { transform: rotate(-12deg); }
+}
+
+@keyframes swingSpotRight {
+  0% { transform: rotate(12deg); }
+  100% { transform: rotate(25deg); }
+}
+
+.ceremony-confetti-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.ceremony-container {
+  position: relative;
+  z-index: 5;
+  max-width: 1500px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ceremony Header */
+.ceremony-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.ceremony-crown-emblem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.ceremony-crown-emblem .trophy-main {
+  font-size: 56px;
+  filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.8));
+  animation: floatTrophy 3s ease-in-out infinite alternate;
+}
+
+@keyframes floatTrophy {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+.ceremony-eyebrow {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--gold-light);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.ceremony-title {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin: 6px 0;
+}
+
+.ceremony-subtitle {
+  font-family: var(--font-arabic);
+  font-size: 18px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.ceremony-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+  width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ceremony-divider .div-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
+
+.ceremony-divider .div-star {
+  color: var(--gold-primary);
+  font-size: 14px;
+  letter-spacing: 4px;
+}
+
+/* Champions Grid */
+.ceremony-gallery-section {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.ceremony-champions-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  width: 100%;
+}
+
+/* Champion Card (Baroque / Royal Golden Frame) */
+.champion-card {
+  position: relative;
+  width: 270px;
+  background: linear-gradient(180deg, rgba(20, 32, 65, 0.85) 0%, rgba(9, 16, 38, 0.95) 100%);
+  border: 2px solid var(--gold-primary);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 55, 0.35);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.champion-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 45px rgba(212, 175, 55, 0.6);
+  border-color: #ffe680;
+}
+
+.champion-crown-tag {
+  font-size: 28px;
+  margin-top: -30px;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.9));
+  animation: crownBob 2s ease-in-out infinite alternate;
+}
+
+@keyframes crownBob {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+.champion-photo-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 3px solid #d4af37;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7), 0 8px 20px rgba(0, 0, 0, 0.6);
+  background: #000;
+}
+
+.champion-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.champion-ribbon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
+  color: #060b19;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 900;
+  padding: 5px 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.champion-card-body {
+  margin-top: 14px;
+  width: 100%;
+}
+
+.champion-name {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 4px;
+  line-height: 1.25;
+}
+
+.champion-name-ar {
+  font-family: var(--font-arabic);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gold-light);
+  margin-bottom: 6px;
+  direction: rtl;
+}
+
+.champion-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.champion-grade-badge {
+  background: rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  color: var(--gold-light);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.champion-section-tag {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* Ceremony Control Bar */
+.ceremony-control-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.btn-ceremony-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+}
+
+.btn-ceremony-btn.btn-fanfare {
+  background: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
+  color: #060b19;
+  font-weight: 800;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn-ceremony-btn.btn-fanfare:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #fae078 0%, #d4af37 100%);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6);
+}
+
+.btn-ceremony-btn.btn-fs,
+.btn-ceremony-btn.btn-print {
+  background: rgba(14, 25, 53, 0.85);
+  color: var(--text-main);
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+.btn-ceremony-btn.btn-fs:hover,
+.btn-ceremony-btn.btn-print:hover {
+  background: rgba(22, 38, 80, 0.95);
+  border-color: var(--border-gold);
+  color: var(--gold-light);
+  transform: translateY(-2px);
+}
+
+.btn-ceremony-btn.btn-back {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-ceremony-btn.btn-back:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+/* ==============================================================
+   COMPETITION MODALS & DIALOGS
+   ============================================================== */
+.comp-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 6, 15, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 9999;
+  animation: modalFadeIn 0.25s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.comp-modal-card {
+  background: linear-gradient(180deg, #0e1935 0%, #080f22 100%);
+  border: 1.5px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.25);
+  animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideUp {
+  from { transform: translateY(20px) scale(0.96); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.modal-icon-badge {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+}
+
+.modal-icon-badge.warning {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  color: #ef4444;
+}
+
+.modal-icon-badge.success {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.5);
+  color: #10b981;
+}
+
+.modal-icon-badge.info {
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.5);
+  color: #3b82f6;
+}
+
+.modal-title {
+  font-family: var(--font-arabic);
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.modal-sub {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.modal-message {
+  font-family: var(--font-arabic);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-main);
+  margin-bottom: 24px;
+}
+
+.modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn-modal-cancel {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-main);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-modal-cancel:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.btn-modal-confirm {
+  padding: 10px 22px;
+  border-radius: var(--radius-sm);
+  font-weight: 800;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.btn-modal-confirm.danger {
+  background: #dc2626;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
+}
+
+.btn-modal-confirm.danger:hover {
+  background: #ef4444;
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6);
+}
+
+.btn-modal-confirm.success {
+  background: #059669;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.4);
+}
+
+.btn-modal-confirm.success:hover {
+  background: #10b981;
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.6);
+}
+
+/* Toast Notifications */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.toast {
+  background: rgba(14, 25, 53, 0.95);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-sm);
+  padding: 12px 20px;
+  color: #ffffff;
+  font-family: var(--font-arabic);
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: toastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1), toastFadeOut 0.4s ease 3.6s forwards;
+  pointer-events: auto;
+}
+
+@keyframes toastSlideIn {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes toastFadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(10px); }
+}
+
+/* ==============================================================
+   PRINT STYLES (Honor Roll Certificate)
+   ============================================================== */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .dashboard-video-bg-container,
+  .bg-stars,
+  .bg-honeycomb,
+  #dashboardView,
+  #stageView,
+  .ceremony-curtain-top,
+  .ceremony-spotlight,
+  .ceremony-confetti-canvas,
+  .ceremony-control-bar,
+  .comp-modal-overlay,
+  .toast-container {
+    display: none !important;
+  }
+  #ceremonyView {
+    display: block !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+  }
+  .ceremony-title {
+    color: #000000 !important;
+    font-size: 32px !important;
+  }
+  .gold-gradient {
+    background: none !important;
+    -webkit-text-fill-color: #997517 !important;
+    color: #997517 !important;
+  }
+  .champion-card {
+    border: 2px solid #997517 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    width: 220px !important;
+  }
+  .champion-name {
+    color: #000000 !important;
+  }
+  .champion-name-ar {
+    color: #333333 !important;
+  }
+}

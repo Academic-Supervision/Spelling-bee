@@ -21,7 +21,15 @@ Double-click **`index.html`** in your file explorer.
 
 ## ✨ Features & Functionality
 
-1. **Alphabetical & Grade Grouping**:
+1. **Official Live Competition Mode & Round Tracking**:
+   * **Start Competition (`▶ Start Live Competition`)**: Activates official competition mode with persistent state (`localStorage`), tracking rounds and winners automatically.
+   * **Automatic Winner Recording**: Triggering `WINNER` on stage or clicking the star icon (★) on any speller card instantly records the contestant as a qualified winner for the current round.
+   * **Visual Qualification Marks**: Qualified spellers feature an emerald glowing border, a golden star, and an animated `⭐ QUALIFIED` badge on their photo.
+   * **Advance Round (`➕ Add Round`)**: Automatically filters the contestants and advances to the next round with **ONLY the qualified winners from the current round**.
+   * **Rounds Complete & Grand Award Ceremony (`🏆 Rounds Complete`)**: Concludes the competition and opens the **Grand Ceremony Stage / Hall of Champions** featuring regal portraits, crowns, golden baroque frames, celebratory fanfare, and confetti showers.
+   * **Safe Reset (`🔄 Reset`)**: Resets all competition progress and restores the full 68-contestant roster with a secure bilingual confirmation dialog.
+
+2. **Alphabetical & Grade Grouping**:
    * All **68 contestants** are organized by Grade (Grades 1 through 6).
    * Contestants within each grade are sorted **alphabetically from A to Z**.
    * Includes both English and Arabic names where applicable.

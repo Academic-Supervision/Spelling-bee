@@ -103,6 +103,66 @@
         </div>
       </header>
 
+      <!-- COMPETITION MANAGEMENT BAR -->
+      <section class="competition-bar-section">
+        <div id="competitionControlBar" class="competition-bar inactive">
+          
+          <!-- Inactive State Layout -->
+          <div class="comp-bar-inactive-content" id="compInactiveContent">
+            <div class="comp-inactive-info">
+              <div class="comp-mode-icon">🎯</div>
+              <div class="comp-mode-text">
+                <div class="comp-mode-title">Championship Mode • وضع المسابقة الرسمية</div>
+                <div class="comp-mode-desc">Activate live round tracking, automatic qualification, and official winner records.</div>
+              </div>
+            </div>
+            <button id="btnStartCompetition" class="btn-comp-start">
+              <span class="btn-start-icon">▶</span>
+              <span class="btn-start-text">Start Live Competition / بدء المسابقة</span>
+            </button>
+          </div>
+
+          <!-- Active State Layout -->
+          <div class="comp-bar-active-content" id="compActiveContent" style="display:none;">
+            <div class="comp-active-left">
+              <div class="comp-live-badge">
+                <span class="pulse-dot"></span>
+                <span>LIVE COMPETITION</span>
+              </div>
+              <div class="comp-round-pill">
+                <span class="round-label">STAGE</span>
+                <span class="round-val" id="compRoundDisplay">Round 1</span>
+              </div>
+              <div class="comp-counter-pill">
+                <span class="counter-label">Active Spellers:</span>
+                <span class="counter-num" id="compActiveCount">68</span>
+              </div>
+              <div class="comp-counter-pill qualified-pill">
+                <span class="star-sparkle">⭐</span>
+                <span class="counter-label">Qualified:</span>
+                <span class="counter-num" id="compWinnersCount">0</span>
+              </div>
+            </div>
+
+            <div class="comp-active-actions">
+              <button id="btnAddRound" class="btn-comp-btn btn-add-round" title="Advance to next round with qualified spellers">
+                <span class="btn-icon">➕</span>
+                <span>Add Round / الجولة التالية</span>
+              </button>
+              <button id="btnCompleteRounds" class="btn-comp-btn btn-complete-rounds" title="Finish rounds & open Grand Ceremony">
+                <span class="btn-icon">🏆</span>
+                <span>Rounds Complete / مسرح التكريم</span>
+              </button>
+              <button id="btnResetCompetition" class="btn-comp-btn btn-reset" title="Reset all competition data">
+                <span class="btn-icon">🔄</span>
+                <span>Reset / إعادة ضبط</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       <!-- SPELLERS CONTAINER (Grouped by Grade, Sorted A-Z) -->
       <section class="spellers-section" id="spellersContainer">
         <!-- Rendered dynamically by JavaScript -->
@@ -194,6 +254,10 @@
                 <h3 class="stage-contestant-name" id="stageContestantName">Student Name</h3>
                 <div class="stage-contestant-ar" id="stageContestantAr"></div>
                 <div class="stage-section-tag" id="stageSectionTag">Section 1A</div>
+                <div id="stageWinnerStatus" class="stage-winner-status-tag" style="display:none;">
+                  <span class="star-icon">⭐</span>
+                  <span>QUALIFIED / متأهل</span>
+                </div>
               </div>
             </div>
 
@@ -210,6 +274,12 @@
                     <span class="btn-sub-text">Celebrate Champion</span>
                   </div>
                 </div>
+              </button>
+
+              <!-- UNDO WINNER BUTTON -->
+              <button id="btnUndoWinner" class="btn-stage-undo" style="display:none;" title="Cancel winner qualification">
+                <span class="undo-icon">↩</span>
+                <span>Cancel Winner / إلغاء الفوز</span>
               </button>
 
               <!-- END BUTTON (Beside the video) -->
@@ -277,7 +347,139 @@
 
     </div>
 
+    <!-- ============================================================== -->
+    <!-- CEREMONY VIEW (Grand Award Stage for Final Champions)           -->
+    <!-- ============================================================== -->
+    <div id="ceremonyView" class="ceremony-view" style="display:none;">
+      
+      <!-- Ambient Curtain & Spotlight Effects -->
+      <div class="ceremony-curtain-top"></div>
+      <div class="ceremony-spotlight spotlight-left"></div>
+      <div class="ceremony-spotlight spotlight-center"></div>
+      <div class="ceremony-spotlight spotlight-right"></div>
+      <canvas id="ceremonyConfettiCanvas" class="ceremony-confetti-canvas"></canvas>
+
+      <div class="ceremony-container">
+        
+        <!-- Ceremony Header -->
+        <header class="ceremony-header">
+          <div class="ceremony-crown-emblem">
+            <span class="crown-side">👑</span>
+            <span class="trophy-main">🏆</span>
+            <span class="crown-side">👑</span>
+          </div>
+          <div class="ceremony-eyebrow">OFFICIAL AWARDS CEREMONY 2026 • مسرح تكريم الأبطال</div>
+          <h1 class="ceremony-title">SPELLING BEE <span class="gold-gradient">CHAMPIONS</span></h1>
+          <p class="ceremony-subtitle">Honoring Academic Excellence & Outstanding Spelling Mastery • لوحة شرف أبطال التهجئة</p>
+          <div class="ceremony-divider">
+            <div class="div-line"></div>
+            <div class="div-star">✦ ✦ ✦</div>
+            <div class="div-line"></div>
+          </div>
+        </header>
+
+        <!-- Champions Showcase Gallery -->
+        <section class="ceremony-gallery-section">
+          <div id="ceremonyChampionsGrid" class="ceremony-champions-grid">
+            <!-- Dynamic Champions Cards Injected Here -->
+          </div>
+        </section>
+
+        <!-- Ceremony Action Controls Bar -->
+        <div class="ceremony-control-bar">
+          <button id="btnCeremonyFanfare" class="btn-ceremony-btn btn-fanfare">
+            <span class="btn-icon">🎉</span>
+            <span>Play Fanfare & FX / تشغيل الاحتفال</span>
+          </button>
+          <button id="btnCeremonyFullscreen" class="btn-ceremony-btn btn-fs">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+            </svg>
+            <span>Fullscreen / ملء الشاشة</span>
+          </button>
+          <button id="btnCeremonyPrint" class="btn-ceremony-btn btn-print">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/>
+            </svg>
+            <span>Print Honors / طباعة لوحة الشرف</span>
+          </button>
+          <button id="btnCeremonyBack" class="btn-ceremony-btn btn-back">
+            <span class="btn-icon">↩</span>
+            <span>Return to Dashboard / العودة للوحة</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
   </div>
+
+  <!-- ============================================================== -->
+  <!-- MODALS & DIALOGS                                               -->
+  <!-- ============================================================== -->
+  <!-- Reset Confirmation Modal -->
+  <div id="modalResetConfirm" class="comp-modal-overlay" style="display:none;">
+    <div class="comp-modal-card">
+      <div class="modal-icon-badge warning">⚠️</div>
+      <h2 class="modal-title">إعادة ضبط المسابقة</h2>
+      <div class="modal-sub">Reset Competition Confirmation</div>
+      <p class="modal-message">
+        هل أنت متأكد من رغبتك في إعادة ضبط المسابقة والبدء من جديد؟<br>
+        <strong>سيتم مسح جميع الجولات والفائزين المسجلين</strong> واستعادة القائمة الكاملة لجميع الطلاب (68 متسابقاً).
+      </p>
+      <div class="modal-actions">
+        <button id="btnCancelReset" class="btn-modal-cancel">إلغاء / Cancel</button>
+        <button id="btnConfirmReset" class="btn-modal-confirm danger">نعم، إعادة الضبط / Yes, Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Round Confirmation Modal -->
+  <div id="modalAddRoundConfirm" class="comp-modal-overlay" style="display:none;">
+    <div class="comp-modal-card">
+      <div class="modal-icon-badge success">🌟</div>
+      <h2 class="modal-title">بدء الجولة التالية</h2>
+      <div class="modal-sub">Advance to Next Round</div>
+      <p class="modal-message" id="modalAddRoundMsg">
+        هل ترغب في بدء الجولة الجديدة بمشاركة الفائزين المتأهلين فقط؟
+      </p>
+      <div class="modal-actions">
+        <button id="btnCancelAddRound" class="btn-modal-cancel">إلغاء / Cancel</button>
+        <button id="btnConfirmAddRound" class="btn-modal-confirm success">تأكيد وبدء الجولة / Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rounds Complete Confirmation Modal -->
+  <div id="modalCompleteConfirm" class="comp-modal-overlay" style="display:none;">
+    <div class="comp-modal-card">
+      <div class="modal-icon-badge success">🏆</div>
+      <h2 class="modal-title">ختام المسابقة وتكريم الأبطال</h2>
+      <div class="modal-sub">Grand Ceremony Confirmation</div>
+      <p class="modal-message" id="modalCompleteMsg">
+        هل ترغب في إنهاء جولات المسابقة والانتقال إلى مسرح التكريم النهائي للاحتفال بالفائزين؟
+      </p>
+      <div class="modal-actions">
+        <button id="btnCancelComplete" class="btn-modal-cancel">إلغاء / Cancel</button>
+        <button id="btnConfirmComplete" class="btn-modal-confirm success">نعم، انتقال للتكريم / Yes, Celebrate</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Generic Alert Modal -->
+  <div id="modalAlert" class="comp-modal-overlay" style="display:none;">
+    <div class="comp-modal-card">
+      <div class="modal-icon-badge info" id="modalAlertIcon">ℹ️</div>
+      <h2 class="modal-title" id="modalAlertTitle">تنبيه</h2>
+      <p class="modal-message" id="modalAlertMsg"></p>
+      <div class="modal-actions">
+        <button id="btnAlertOk" class="btn-modal-confirm">حسناً / OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
 
   <!-- LOAD STUDENT DATA -->
   <script src="students_data.js"></script>
