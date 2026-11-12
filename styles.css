@@ -1181,51 +1181,6 @@ body {
   font-weight: 700;
 }
 
-/* ==============================================================
-   RESPONSIVE DESIGN
-   ============================================================== */
-@media (max-width: 1100px) {
-  .stage-layout {
-    flex-direction: column;
-    height: auto;
-    min-height: 100vh;
-  }
-  .stage-screen-col {
-    padding: 16px;
-    height: auto;
-  }
-  .stage-sidebar-col {
-    width: 100%;
-    max-width: 100%;
-    border-left: none;
-    border-top: 1px solid var(--border-subtle);
-  }
-  .championship-header {
-    padding: 20px;
-  }
-  .spellers-section {
-    padding: 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .nav-control-bar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .search-box {
-    width: 100%;
-    min-width: 100%;
-  }
-  .brand-title {
-    font-size: 22px;
-  }
-}
-
 
 /* ==============================================================
    COMPETITION MANAGEMENT SYSTEM STYLES
@@ -2324,3 +2279,532 @@ body {
   opacity: 1;
   filter: grayscale(0%) drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
 }
+
+
+/* ==============================================================
+   FLOATING SCROLL TO TOP BUTTON
+   ============================================================== */
+.btn-scroll-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d4af37, #997517);
+  color: #050a18;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 14px rgba(212, 175, 55, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.btn-scroll-top:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 175, 55, 0.6);
+}
+
+
+/* ==============================================================
+   RESPONSIVE DESIGN SYSTEM (MOBILE, TABLET & DESKTOP)
+   ============================================================== */
+
+/* --- TABLETS (max-width: 1024px) --- */
+@media (max-width: 1024px) {
+  .stage-layout {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+  .stage-screen-col {
+    padding: 16px;
+    height: auto;
+  }
+  .stage-sidebar-col {
+    width: 100%;
+    max-width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .championship-header {
+    padding: 16px 24px 12px;
+  }
+  .spellers-section {
+    padding: 20px 24px;
+  }
+  .spellers-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+  }
+}
+
+/* --- MOBILE & SMALL TABLETS (max-width: 768px) --- */
+@media (max-width: 768px) {
+  /* Prevent header from sticking and completely covering student photos */
+  .championship-header {
+    padding: 10px 14px 8px;
+    position: relative;
+    top: auto;
+  }
+  
+  .header-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .trophy-brand {
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .school-header-logo {
+    height: 36px;
+  }
+  
+  .brand-divider-v {
+    height: 26px;
+    margin: 0 2px;
+  }
+  
+  .trophy-emblem {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .bee-icon {
+    font-size: 18px;
+  }
+  
+  .brand-text {
+    min-width: 0;
+  }
+  
+  .brand-eyebrow {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 190px;
+    margin-bottom: 0;
+  }
+  
+  .brand-title {
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Hide lengthy subtitle on mobile to give maximum room to photos */
+  .brand-subtitle {
+    display: none;
+  }
+  
+  .header-actions {
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  
+  .stats-pill {
+    padding: 3px 8px;
+    min-width: 48px;
+  }
+  
+  .stats-num {
+    font-size: 14px;
+  }
+  
+  .stats-label {
+    font-size: 7.5px;
+  }
+  
+  .btn-action-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Nav control bar: search + horizontal swipeable grade tabs */
+  .nav-control-bar {
+    margin: 8px auto 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  /* CRITICAL FIX: reset flex-basis: 380px that was causing 380px vertical height */
+  .search-box {
+    flex: none;
+    width: 100%;
+    min-width: 0;
+    height: 38px;
+  }
+  
+  .search-box input {
+    height: 38px;
+    padding: 7px 32px 7px 36px;
+    font-size: 13px;
+  }
+  
+  .search-icon {
+    left: 12px;
+  }
+  
+  .grade-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 6px;
+    width: 100%;
+    padding: 2px 2px 6px;
+    scrollbar-width: none;
+  }
+  
+  .grade-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .grade-tab {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 5px 12px;
+    font-size: 12px;
+    gap: 6px;
+  }
+  
+  .grade-tab .tab-count {
+    font-size: 10px;
+    padding: 1px 5px;
+  }
+
+  /* Competition Bar on Mobile */
+  .competition-bar-section {
+    padding: 0 14px;
+    margin-top: 8px;
+  }
+  
+  .comp-bar-inactive-content {
+    padding: 8px 12px;
+    gap: 10px;
+  }
+  
+  .comp-mode-icon {
+    font-size: 20px;
+  }
+  
+  .comp-mode-title {
+    font-size: 12.5px;
+  }
+  
+  .comp-mode-desc {
+    display: none;
+  }
+  
+  .btn-comp-start {
+    width: 100%;
+    padding: 8px 14px;
+    font-size: 12px;
+    justify-content: center;
+  }
+
+  /* Active Competition Bar on Mobile */
+  .comp-bar-active-content {
+    padding: 10px 12px;
+    gap: 8px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .comp-active-left {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .comp-live-badge {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+  
+  .comp-round-pill {
+    padding: 4px 10px;
+  }
+  
+  .comp-round-pill .round-val {
+    font-size: 12px;
+  }
+  
+  .comp-counter-pill {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  
+  .comp-active-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    width: 100%;
+  }
+  
+  .btn-comp-btn {
+    padding: 8px 10px;
+    font-size: 11px;
+    justify-content: center;
+  }
+  
+  .btn-comp-btn.btn-reset {
+    grid-column: span 2;
+  }
+
+  /* Spellers Section & Grid: 2 Columns for optimal photo visibility */
+  .spellers-section {
+    padding: 12px 14px 40px;
+  }
+  
+  .grade-group-block {
+    margin-bottom: 24px;
+  }
+  
+  .grade-group-header {
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    gap: 8px;
+  }
+  
+  .grade-badge-pill {
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+  
+  .grade-group-title {
+    font-size: 16px;
+  }
+  
+  .grade-group-count {
+    font-size: 11px;
+  }
+  
+  .spellers-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  
+  .speller-card {
+    border-radius: var(--radius-sm);
+  }
+  
+  .speller-rank-tag {
+    top: 6px;
+    left: 6px;
+    font-size: 9px;
+    padding: 2px 5px;
+  }
+  
+  .speller-grade-pill {
+    top: 6px;
+    right: 6px;
+    font-size: 8px;
+    padding: 2px 5px;
+  }
+  
+  .speller-card-body {
+    padding: 8px 10px 10px;
+  }
+  
+  .speller-name {
+    font-size: 12px;
+    line-height: 1.2;
+    margin-bottom: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .speller-name-ar {
+    font-size: 12px;
+    margin-bottom: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .speller-meta-row {
+    padding-top: 6px;
+  }
+  
+  .speller-section-badge {
+    font-size: 9.5px;
+    padding: 2px 5px;
+  }
+  
+  .speller-action-cta {
+    font-size: 9.5px;
+    gap: 2px;
+  }
+  
+  .speller-action-cta span:first-child {
+    display: none;
+  }
+
+  /* Stage View on Mobile */
+  .stage-view {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .stage-layout {
+    flex-direction: column;
+    min-height: 100%;
+    height: auto;
+  }
+  
+  .stage-screen-col {
+    padding: 10px;
+    flex: none;
+    width: 100%;
+  }
+  
+  .stage-screen-frame {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-md);
+  }
+  
+  .stage-sidebar-col {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 12px 28px;
+    border-left: none;
+    border-top: 1px solid var(--border-subtle);
+    overflow-y: visible;
+  }
+  
+  .panel-header {
+    padding-bottom: 8px;
+  }
+  
+  .panel-title {
+    font-size: 18px;
+  }
+  
+  .contestant-stage-card {
+    padding: 10px;
+    gap: 12px;
+  }
+  
+  .contestant-stage-avatar {
+    width: 52px;
+    height: 70px;
+  }
+  
+  .stage-contestant-name {
+    font-size: 16px;
+  }
+  
+  .stage-contestant-ar {
+    font-size: 14px;
+  }
+  
+  .btn-stage-winner,
+  .btn-stage-end {
+    padding: 10px 14px;
+    min-height: 48px;
+  }
+  
+  .shortcuts-hint {
+    display: none;
+  }
+
+  /* Ceremony View on Mobile */
+  .ceremony-view {
+    padding: 24px 14px 60px;
+  }
+  
+  .ceremony-school-logo {
+    height: 54px;
+  }
+  
+  .ceremony-title {
+    font-size: 24px;
+  }
+  
+  .ceremony-subtitle {
+    font-size: 12px;
+  }
+  
+  .ceremony-champions-grid {
+    gap: 16px;
+  }
+  
+  .ceremony-control-bar {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+  
+  .btn-ceremony-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* --- EXTRA SMALL PHONES (max-width: 480px) --- */
+@media (max-width: 480px) {
+  .championship-header {
+    padding: 8px 10px 6px;
+  }
+  
+  .school-header-logo {
+    height: 30px;
+  }
+  
+  .trophy-emblem {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .bee-icon {
+    font-size: 15px;
+  }
+  
+  .brand-title {
+    font-size: 13px;
+  }
+  
+  .brand-eyebrow {
+    max-width: 140px;
+  }
+  
+  /* Hide the 2nd stats pill (Grades) to save space on tiny screens */
+  .header-actions .stats-pill:nth-child(2) {
+    display: none;
+  }
+  
+  .spellers-section {
+    padding: 10px 10px 30px;
+  }
+  
+  .spellers-grid {
+    gap: 8px;
+  }
+}
+

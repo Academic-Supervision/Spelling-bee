@@ -1220,6 +1220,22 @@
     btnStageFullscreen.addEventListener('click', toggleFullscreen);
     btnHeaderFullscreen.addEventListener('click', toggleFullscreen);
 
+    // Floating Scroll to Top Button
+    const btnScrollToTop = document.getElementById('btnScrollToTop');
+    if (btnScrollToTop) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 280) {
+          btnScrollToTop.classList.add('visible');
+        } else {
+          btnScrollToTop.classList.remove('visible');
+        }
+      }, { passive: true });
+
+      btnScrollToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
     // Ceremony Actions
     if (btnCeremonyFanfare) {
       btnCeremonyFanfare.addEventListener('click', playCeremonyFanfare);
